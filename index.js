@@ -1,31 +1,15 @@
-const Discord = require("discord.js");
-const config = require("./config.json");
+const clientExtra = require("./extra/client.js");
 require("dotenv").config();
 
-function startBot() {
-  client.login(process.env["TOKEN"]);
-}
-
-const client = new Discord.Client({
-  intents: [
-    Discord.Intents.FLAGS.GUILDS,
-    Discord.Intents.FLAGS.GUILD_MESSAGES,
-    Discord.Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
-    Discord.Intents.FLAGS.DIRECT_MESSAGES,
-    Discord.Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
-  ],
-  partials: ["MESSAGE", "CHANNEL", "REACTION"],
-});
-
-const prefix = config.prefix;
+const client = clientExtra.createClient();
 
 client.on("ready", async () => {
-  client.user.setActivity("the mighty iDenali!", {
-    type: "WATCHING",
-  });
+    client.user.setActivity("the mighty iDenali!", {
+        type: "WATCHING",
+    });
 
-  console.log(`Logged in as ${client.user.tag}`);
-  console.log("-------------Log-------------");
+    console.log(`Logged in as ${client.user.tag}`);
+    console.log("-------------Log-------------");
 });
 
-startBot();
+clientExtra.startBot(client, process.env["TOKEN"]);
