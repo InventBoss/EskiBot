@@ -4,5 +4,15 @@
     "discord-api-types": "^0.24.0",
     "discord.js": "^13.3.0",
     "dotenv": "^10.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx prettier --write .",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "husky": "^7.0.4",
+    "lint-staged": "^11.2.6",
+    "prettier": "2.4.1"
   }
 }

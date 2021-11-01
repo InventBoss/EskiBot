@@ -5,27 +5,25 @@ require("dotenv").config();
 const client = clientExtra.createClient();
 
 client.on("ready", async () => {
-    client.user.setActivity("the mighty iDenali!", {
-        type: "WATCHING",
-    });
+  client.user.setActivity("the mighty iDenali!", {
+    type: "WATCHING",
+  });
 
-    client.textCommands = new Discord.Collection();
-    client.textCommands = clientExtra.registerTextCommands(client);
+  client.textCommands = new Discord.Collection();
+  client.textCommands = clientExtra.registerTextCommands(client);
 
-    clientExtra.registerSlashCommands();
+  clientExtra.registerSlashCommands();
 
-    console.log(
-        `-Successfully Logged in as ${client.user.tag}\n`
-    );
+  console.log(`-Successfully Logged in as ${client.user.tag}\n`);
 });
 
 client.on("messageCreate", (message) => {
-    clientExtra.executeTextCommand(client, message);
+  clientExtra.executeTextCommand(client, message);
 });
 
 client.on("interactionCreate", async (interaction) => {
-    if (interaction.isCommand())
-        return clientExtra.executeSlashCommand(interaction);
+  if (interaction.isCommand())
+    return clientExtra.executeSlashCommand(interaction);
 });
 
 clientExtra.startBot(client, process.env["TOKEN"]);
