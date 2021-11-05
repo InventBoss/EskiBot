@@ -15,7 +15,7 @@ module.exports = {
                 checkAdmin: true,
                 checkOwner: true,
             }) ||
-            message.author.id === 617816411750006794
+            message.author.id === 617816411750006794n
         ) {
             if (args[0] === "add") {
                 fs.readFile("./data/poll.json", "utf-8", (error, text) => {
@@ -72,7 +72,7 @@ module.exports = {
                 checkAdmin: true,
                 checkOwner: true,
             }) ||
-            interaction.author.id === 617816411750006794
+            interaction.author.id === 617816411750006794n
         ) {
             if (interaction.options.getSubcommand() === "add") {
                 fs.readFile("./data/poll.json", "utf-8", (error, text) => {

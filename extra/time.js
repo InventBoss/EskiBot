@@ -2,12 +2,10 @@ const fs = require("fs");
 const Discord = require("discord.js");
 const _ = require("underscore");
 
-const channelIds = [859291595671994379n, 896071289381470286n];
-
 const tick = (client) => {
     const date = new Date();
 
-    if (date.getHours() == "12" && date.getMinutes() == 30) {
+    if (date.getHours() == 12 && date.getMinutes() == 0) {
         fs.readFile("./data/poll.json", "utf-8", async (error, text) => {
             if (error) {
                 throw error;
@@ -22,14 +20,20 @@ const tick = (client) => {
 
             const chosenPoll = data["polls"][chosenPollNum - 1]["poll"];
 
-            for (const channelId in channelIds) {
+            const channelIds = [859291595671994379n, 896071289381470286n];
+
+            for (const channelId of channelIds) {
                 const embed = new Discord.MessageEmbed()
                     .setColor("#8ae9ff")
                     .setTitle("Daily Poll")
-                    .setDescription(`${chosenPoll}`)
-                const pollMessage = client.channels.cache.get(channelId).send({embeds: [embed]});
-                await pollMessage.react("🇹");
-                await pollMessage.react("🇫");
+                    .setDescription(`${chosenPoll}`);
+
+                const pollMessage = await client.channels.cache
+                    .get(`${channelId}`)
+                    .send({ embeds: [embed] });
+
+                await pollMessage.react("✔️");
+                await pollMessage.react("❌");
             }
         });
     }
