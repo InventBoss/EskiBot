@@ -3,6 +3,7 @@ const fs = require("fs");
 
 module.exports = {
     name: "reload",
+    category: "dev",
     executeText: (message, args) => {
         if (message.author.id === "617816411750006794") {
             const commandName = args[0].toLowerCase();

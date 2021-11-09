@@ -14,7 +14,7 @@ client.on("ready", async () => {
     client.textCommands = clientExtra.registerTextCommands(client);
     
     clientExtra.registerSlashCommands(client);
-    
+
     time.startClock(client);
 
     console.log(`-Successfully Logged in as ${client.user.tag}\n`);

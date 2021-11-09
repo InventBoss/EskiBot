@@ -4,6 +4,8 @@ const fs = require("fs");
 
 module.exports = {
     name: "poll",
+    category: "server",
+    shortDesc: "`|poll` | Manage the daily polls\n",
     executeText: (message, args) => {
         if (!message.guild)
             return message.channel.send(
@@ -48,6 +50,48 @@ module.exports = {
                     });
                 });
             }
+            if (args[0] === "post") {
+                fs.readFile(
+                    "./data/poll.json",
+                    "utf-8",
+                    async (error, text) => {
+                        if (error) {
+                            throw error;
+                        }
+
+                        let data = JSON.parse(text);
+
+                        const chosenPollNum =
+                            Math.floor(
+                                Math.random() *
+                                    (_.keys(data["polls"]).length - 1 + 1)
+                            ) + 1;
+
+                        const chosenPoll =
+                            data["polls"][chosenPollNum - 1]["poll"];
+
+                        const channelIds = [
+                            859291595671994379n,
+                            896071289381470286n,
+                        ];
+
+                        for (const channelId of channelIds) {
+                            const embed = new Discord.MessageEmbed()
+                                .setColor("#8ae9ff")
+                                .setTitle("Daily Poll")
+                                .setDescription(`${chosenPoll}`);
+
+                            const pollMessage =
+                                await message.client.channels.cache
+                                    .get(`${channelId}`)
+                                    .send({ embeds: [embed] });
+
+                            await pollMessage.react("✔️");
+                            await pollMessage.react("❌");
+                        }
+                    }
+                );
+            }
         } else {
             message.channel.send("Sorry but you can't run this command");
         }
@@ -65,6 +109,11 @@ module.exports = {
                         .setDescription("Insert new poll here")
                         .setRequired(true)
                 )
+        )
+        .addSubcommand((subcommand) =>
+            subcommand
+                .setName("post")
+                .setDescription("Post a random poll from the database")
         ),
     executeSlash: async (interaction) => {
         if (
@@ -96,14 +145,60 @@ module.exports = {
                         }
 
                         const embed = new Discord.MessageEmbed()
-                        .setColor("#ccfeff")
-                        .setAuthor(
-                            `Added poll to the database`,
-                            "https://cdn.discordapp.com/attachments/896071289884778556/906225556767510538/EB.png"
-                        );
+                            .setColor("#ccfeff")
+                            .setAuthor(
+                                `Added poll to the database`,
+                                "https://cdn.discordapp.com/attachments/896071289884778556/906225556767510538/EB.png"
+                            );
                         return await interaction.reply({ embeds: [embed] });
                     });
                 });
+            }
+            if (interaction.options.getSubcommand() === "post") {
+                fs.readFile(
+                    "./data/poll.json",
+                    "utf-8",
+                    async (error, text) => {
+                        if (error) {
+                            throw error;
+                        }
+
+                        let data = JSON.parse(text);
+
+                        const chosenPollNum =
+                            Math.floor(
+                                Math.random() *
+                                    (_.keys(data["polls"]).length - 1 + 1)
+                            ) + 1;
+
+                        const chosenPoll =
+                            data["polls"][chosenPollNum - 1]["poll"];
+
+                        const channelIds = [
+                            859291595671994379n,
+                            896071289381470286n,
+                        ];
+
+                        for (const channelId of channelIds) {
+                            const embed = new Discord.MessageEmbed()
+                                .setColor("#8ae9ff")
+                                .setTitle("Daily Poll")
+                                .setDescription(`${chosenPoll}`);
+
+                            const pollMessage =
+                                await interaction.client.channels.cache
+                                    .get(`${channelId}`)
+                                    .send({ embeds: [embed] });
+
+                            await pollMessage.react("✔️");
+                            await pollMessage.react("❌");
+                        }
+                        await interaction.reply({
+                            content: `Post has been sent`,
+                            ephemeral: true,
+                        });
+                    }
+                );
             }
         } else {
             await interaction.reply("Sorry but you can't run this command");

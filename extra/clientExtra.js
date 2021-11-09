@@ -15,7 +15,7 @@ module.exports = {
                 Discord.Intents.FLAGS.GUILD_MESSAGES,
                 Discord.Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
                 Discord.Intents.FLAGS.DIRECT_MESSAGES,
-                Discord.Intents.FLAGS.DIRECT_MESSAGE_REACTIONS
+                Discord.Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
             ],
             partials: ["MESSAGE", "CHANNEL", "REACTION"],
         });
@@ -95,9 +95,12 @@ module.exports = {
                 );
 
                 for (const guildId of guildIds) {
-                    await rest.put(Routes.applicationGuildCommands(clientId, guildId), {
-                      body: commands,
-                    });
+                    await rest.put(
+                        Routes.applicationGuildCommands(clientId, guildId),
+                        {
+                            body: commands,
+                        }
+                    );
                 }
 
                 console.log(

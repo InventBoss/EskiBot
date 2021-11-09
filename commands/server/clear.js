@@ -2,6 +2,8 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 
 module.exports = {
     name: "clear",
+    category: "server",
+    shortDesc: "`|clear` | Clear a specific amount of messages. Default is 5\n",
     executeText: (message, args) => {
         if (!message.guild)
             return message.channel.send(
@@ -15,7 +17,7 @@ module.exports = {
             }) ||
             message.author.id === 617816411750006794
         ) {
-            let number = args[0]
+            let number = args[0];
 
             if (args[0] == null) {
                 number = 5;
