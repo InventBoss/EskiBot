@@ -26,7 +26,7 @@ module.exports = {
     registerTextCommands: (client) => {
         const commandFolders = fs.readdirSync("./commands");
 
-        console.log("-Started refreshing application (txt) commands.\n");
+        console.log("-Started loading (txt) commands.\n");
         for (const folder of commandFolders) {
             const commandFiles = fs
                 .readdirSync(`./commands/${folder}`)
@@ -36,7 +36,7 @@ module.exports = {
                 client.textCommands.set(command.name, command);
             }
         }
-        console.log("-Successfully reloaded application (txt) commands.\n");
+        console.log("-Successfully loaded (txt) commands.\n");
 
         return client.textCommands;
     },
@@ -90,17 +90,15 @@ module.exports = {
 
         (async () => {
             try {
-                console.log(
-                    "-Started refreshing application (slh) commands.\n"
-                );
+                console.log("-Started reloading (slh) commands.\n");
 
                 for (const guildId of guildIds) {
-                    await rest.put(
+                    rest.put(
                         Routes.applicationGuildCommands(clientId, guildId),
                         {
                             body: commands,
                         }
-                    );
+                    )
                 }
 
                 console.log(

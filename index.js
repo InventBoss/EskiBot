@@ -13,7 +13,8 @@ client.on("ready", async () => {
     client.textCommands = new Discord.Collection();
     client.textCommands = clientExtra.registerTextCommands(client);
     
-    clientExtra.registerSlashCommands(client);
+    clientExtra.registerSlashCommands(client)
+
 
     time.startClock(client);
 

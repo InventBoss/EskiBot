@@ -19,6 +19,10 @@ module.exports = {
                     "`|about category general` | General commands are here\n`|about category server` | For all your server needs"
                 )
                 .addField(
+                    "Specific Command",
+                    "`|about command` | Get some info on a specific command"
+                )
+                .addField(
                     "Eskibot",
                     "`|about me` | Get some info on what/why/who I am"
                 )
@@ -99,6 +103,32 @@ module.exports = {
                     );
                 message.channel.send({ embeds: [embed] });
             }
+        } else if (args[0] === "command") {
+            fs.readFile("./data/commandDesc.json", "utf-8", async (error, text) => {
+                if (error) {
+                    throw error;
+                }
+
+                let fileData = JSON.parse(text);
+
+                const commandDesc = fileData[args[1]] ?? "Sorry, try an existing command"
+                let commandName = "Unknown Command"
+
+                if (commandDesc !== "Sorry, try an existing command") {
+                    commandName = args[1][0].toUpperCase() + args[1].substring(1) + " Command"
+                }
+
+                const embed = new Discord.MessageEmbed()
+                    .setColor("#00dde0")
+                    .setAuthor(
+                        `About | ${commandName}`,
+                        "https://cdn.discordapp.com/attachments/896071289884778556/906225556767510538/EB.png"
+                    )
+                    .setDescription(
+                        commandDesc
+                    );
+                message.channel.send({ embeds: [embed] });
+            })
         }
     },
     slashData: new SlashCommandBuilder()
@@ -117,12 +147,21 @@ module.exports = {
         )
         .addSubcommand((subcommand) =>
             subcommand
+                .setName("specific")
+                .setDescription("For specific commands")
+                .addStringOption((option) =>
+                    option.setName("command").setDescription("Chosen command")
+                )
+        )
+        .addSubcommand((subcommand) =>
+            subcommand
                 .setName("category")
                 .setDescription("All the command categories")
                 .addStringOption((option) =>
                     option
                         .setName("chosen")
                         .setDescription("Choose you category")
+                        .setRequired(true)
                         .addChoice("General", "general")
                         .addChoice("Server", "server")
                 )
@@ -138,6 +177,10 @@ module.exports = {
                 .addField(
                     "Categories",
                     "`|about general` | General commands are here\n`|about server` | For all your server needs"
+                )
+                .addField(
+                    "Specific Command",
+                    "`|about command` | Get some info on a specific command"
                 )
                 .addField(
                     "Eskibot",
