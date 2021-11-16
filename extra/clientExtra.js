@@ -3,6 +3,7 @@ const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
 const fs = require("fs");
 const { prefix } = require("../config.json");
+const chalk = require("chalk")
 
 const clientId = 904202447642312735n;
 const guildIds = [859291380233011220n, 896071289310162974n];
@@ -26,7 +27,7 @@ module.exports = {
     registerTextCommands: (client) => {
         const commandFolders = fs.readdirSync("./commands");
 
-        console.log("-Started loading (txt) commands.\n");
+        console.log("-Started loading", chalk.greenBright("(txt)") , "commands.\n");
         for (const folder of commandFolders) {
             const commandFiles = fs
                 .readdirSync(`./commands/${folder}`)
@@ -36,7 +37,7 @@ module.exports = {
                 client.textCommands.set(command.name, command);
             }
         }
-        console.log("-Successfully loaded (txt) commands.\n");
+        console.log("-Successfully loaded", chalk.greenBright("(txt)") , "commands.\n");
 
         return client.textCommands;
     },
@@ -63,10 +64,10 @@ module.exports = {
         try {
             command.executeText(message, args, text);
             console.log(
-                `(txt) <${message.author.tag}> executed ${commandName} in <${message.guild}>`
+                chalk.greenBright("(txt)"), `<${message.author.tag}> executed ${commandName} in <${message.guild}>`
             );
         } catch (error) {
-            console.log("(err) " + error);
+            console.log(chalk.redBright("(err)"), error);
             message.reply(
                 `there was an error trying to execute \`>${commandName}\``
             );
@@ -90,7 +91,7 @@ module.exports = {
 
         (async () => {
             try {
-                console.log("-Started reloading (slh) commands.\n");
+                console.log("-Started reloading", chalk.blueBright("(slh)"), "commands.\n");
 
                 for (const guildId of guildIds) {
                     rest.put(
@@ -102,7 +103,7 @@ module.exports = {
                 }
 
                 console.log(
-                    "-Successfully reloaded application (slh) commands.\n"
+                    "-Successfully reloaded", chalk.blueBright("(slh)"), "commands.\n"
                 );
             } catch (error) {
                 console.error(error);
@@ -124,10 +125,10 @@ module.exports = {
                             interaction
                         );
                         console.log(
-                            `(slh) <${interaction.user.tag}> executed ${interaction.commandName} in <${interaction.guild.name}>`
+                            chalk.blueBright("(slh)"), `<${interaction.user.tag}> executed ${interaction.commandName} in <${interaction.guild.name}>`
                         );
                     } catch (error) {
-                        console.log("(err) " + error);
+                        console.log(chalk.redBright("(err)"), error);
                         interaction.reply(
                             `there was an error trying to execute \`>${interaction.commandName}\``
                         );

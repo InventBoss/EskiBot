@@ -7,6 +7,8 @@ module.exports = {
     executeText: (message, args) => {
         if (!message.author.id === "617816411750006794") return;
 
+        
+
         if (args[0] === "say") {
             if (!message.guild)
                 return message.channel.send(
@@ -28,7 +30,7 @@ module.exports = {
                     .setColor("#ccfeff")
                     .setAuthor(
                         "Here you go my dude",
-                        "https://cdn.discordapp.com/attachments/896071289884778556/906225556767510538/EB.png"
+                        "https://cdn.discordapp.com/attachments/883560212563386428/906225307063836732/EB.png"
                     )
                     .setImage(message.channel.guild.iconURL());
                 return message.channel.send({ embeds: [embed] });
@@ -37,7 +39,7 @@ module.exports = {
                     .setColor("#ccfeff")
                     .setAuthor(
                         `The Server ID is ${message.channel.guild.id}`,
-                        "https://cdn.discordapp.com/attachments/896071289884778556/906225556767510538/EB.png"
+                        "https://cdn.discordapp.com/attachments/883560212563386428/906225307063836732/EB.png"
                     );
                 return message.channel.send({ embeds: [embed] });
             } else if (args[1] === "members") {
@@ -47,7 +49,7 @@ module.exports = {
                     .setColor("#ccfeff")
                     .setAuthor(
                         `We Have ${memberCount} Members`,
-                        "https://cdn.discordapp.com/attachments/896071289884778556/906225556767510538/EB.png"
+                        "https://cdn.discordapp.com/attachments/883560212563386428/906225307063836732/EB.png"
                     );
                 return message.channel.send({ embeds: [embed] });
             }
@@ -65,9 +67,17 @@ module.exports = {
                 .setColor("#ccfeff")
                 .setAuthor(
                     `Set nick to ${newNick}`,
-                    "https://cdn.discordapp.com/attachments/896071289884778556/906225556767510538/EB.png"
+                    "https://cdn.discordapp.com/attachments/883560212563386428/906225307063836732/EB.png"
                 );
             return message.channel.send({ embeds: [embed] });
+        }
+        if (args[0] === "test") {
+            const role =
+                message.guild.roles.cache.find(
+                    (role) => role.name === "Polls Ping"
+                ) || "";
+
+            
         }
     },
     slashData: new SlashCommandBuilder()
@@ -110,20 +120,27 @@ module.exports = {
                         )
                         .setRequired(true)
                 )
+        )
+        .addSubcommand((subcommand) =>
+            subcommand
+                .setName("test")
+                .setDescription("InventBoss tests with this")
         ),
     executeSlash: async (interaction) => {
         if (interaction.user.id === "617816411750006794") {
+
             if (interaction.options.getSubcommand() === "say") {
                 return await interaction.reply(
                     interaction.options.getString("input")
                 );
+            } else if (interaction.options.getSubcommand() === "test") {
             } else if (interaction.options.getSubcommand() === "server") {
                 if (interaction.options.getString("data") === "icon") {
                     const embed = new Discord.MessageEmbed()
                         .setColor("#ccfeff")
                         .setAuthor(
                             "Here You Go My Dude",
-                            "https://cdn.discordapp.com/attachments/896071289884778556/906225556767510538/EB.png"
+                            "https://cdn.discordapp.com/attachments/883560212563386428/906225307063836732/EB.png"
                         )
                         .setImage(interaction.guild.iconURL());
                     return await interaction.reply({ embeds: [embed] });
@@ -132,7 +149,7 @@ module.exports = {
                         .setColor("#ccfeff")
                         .setAuthor(
                             `The Server ID is ${interaction.guild.id}`,
-                            "https://cdn.discordapp.com/attachments/896071289884778556/906225556767510538/EB.png"
+                            "https://cdn.discordapp.com/attachments/883560212563386428/906225307063836732/EB.png"
                         );
                     return await interaction.reply({ embeds: [embed] });
                 } else if (
@@ -144,7 +161,7 @@ module.exports = {
                         .setColor("#ccfeff")
                         .setAuthor(
                             `We Have ${memberCount} Members`,
-                            "https://cdn.discordapp.com/attachments/896071289884778556/906225556767510538/EB.png"
+                            "https://cdn.discordapp.com/attachments/883560212563386428/906225307063836732/EB.png"
                         );
                     return await interaction.reply({ embeds: [embed] });
                 }
@@ -154,15 +171,15 @@ module.exports = {
                     return interaction.reply(
                         "Sorry but I don't have permission father"
                     );
-    
-                const newNick = interaction.options.getString("name")
-    
+
+                const newNick = interaction.options.getString("name");
+
                 interaction.guild.me.setNickname(newNick);
                 const embed = new Discord.MessageEmbed()
                     .setColor("#ccfeff")
                     .setAuthor(
                         `Set nick to ${newNick}`,
-                        "https://cdn.discordapp.com/attachments/896071289884778556/906225556767510538/EB.png"
+                        "https://cdn.discordapp.com/attachments/883560212563386428/906225307063836732/EB.png"
                     );
                 return interaction.reply({ embeds: [embed] });
             }

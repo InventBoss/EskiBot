@@ -31,5 +31,13 @@
 			".addStringOption((option) => \n\toption\n\t\t.setName(\"Insert Name\")\n\t\t.setDescription(\"Insert Desc\")\n)"
 		],
 		"description": "Generate a string option"
+	},
+	"Generate Poll": {
+		"scope": "json",
+		"prefix": "genr poll",
+		"body": [
+			"{\n\t\"poll\": \"TEXT HERE\"\n}"
+		],
+		"description": "Generate a poll"
 	}
 }

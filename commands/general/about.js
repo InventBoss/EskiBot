@@ -12,7 +12,7 @@ module.exports = {
                 .setColor("#00dde0")
                 .setAuthor(
                     "About | Main",
-                    "https://cdn.discordapp.com/attachments/896071289884778556/906225556767510538/EB.png"
+                    "https://cdn.discordapp.com/attachments/883560212563386428/906225307063836732/EB.png"
                 )
                 .addField(
                     "Categories",
@@ -36,7 +36,7 @@ module.exports = {
                 .setColor("#00dde0")
                 .setAuthor(
                     "About | Myself",
-                    "https://cdn.discordapp.com/attachments/896071289884778556/906225556767510538/EB.png"
+                    "https://cdn.discordapp.com/attachments/883560212563386428/906225307063836732/EB.png"
                 )
                 .setDescription(
                     "My name is EskiBot, I am the offical discord bot for iDenali's servers.\n\n My father is InventBoss who created me in exchange for power in iDenali's servers.\n I was born on October 31 2021 when my father started work on me.\n\nI'm not currently open to other servers outside the iDenali family, but\nyou can find my source code [here](https://github.com/InventBoss/EskiBot)."
@@ -57,7 +57,7 @@ module.exports = {
                 .setColor("#00dde0")
                 .setAuthor(
                     "About | Creator",
-                    "https://cdn.discordapp.com/attachments/896071289884778556/906225556767510538/EB.png"
+                    "https://cdn.discordapp.com/attachments/883560212563386428/906225307063836732/EB.png"
                 )
                 .setDescription(
                     "My father, InventBoss, created me along with my brother, [MeDaBot](https://github.com/InventBoss/MeDaBot-JavaScript).\n\nHe's an amateur french programmer who lives in America."
@@ -87,7 +87,7 @@ module.exports = {
                         `About | ${
                             args[1][0].toUpperCase() + args[1].substring(1)
                         }`,
-                        "https://cdn.discordapp.com/attachments/896071289884778556/906225556767510538/EB.png"
+                        "https://cdn.discordapp.com/attachments/883560212563386428/906225307063836732/EB.png"
                     )
                     .setDescription(commandContent);
                 message.channel.send({ embeds: [embed] });
@@ -96,7 +96,7 @@ module.exports = {
                     .setColor("#00dde0")
                     .setAuthor(
                         "About | Unknown",
-                        "https://cdn.discordapp.com/attachments/896071289884778556/906225556767510538/EB.png"
+                        "https://cdn.discordapp.com/attachments/883560212563386428/906225307063836732/EB.png"
                     )
                     .setDescription(
                         "Hey maybe you wanna try a category that exists?"
@@ -104,31 +104,37 @@ module.exports = {
                 message.channel.send({ embeds: [embed] });
             }
         } else if (args[0] === "command") {
-            fs.readFile("./data/commandDesc.json", "utf-8", async (error, text) => {
-                if (error) {
-                    throw error;
+            fs.readFile(
+                "./data/commandDesc.json",
+                "utf-8",
+                async (error, text) => {
+                    if (error) {
+                        throw error;
+                    }
+
+                    let fileData = JSON.parse(text);
+
+                    const commandDesc =
+                        fileData[args[1]] ?? "Sorry, try an existing command";
+                    let commandName = "Unknown Command";
+
+                    if (commandDesc !== "Sorry, try an existing command") {
+                        commandName =
+                            args[1][0].toUpperCase() +
+                            args[1].substring(1) +
+                            " Command";
+                    }
+
+                    const embed = new Discord.MessageEmbed()
+                        .setColor("#00dde0")
+                        .setAuthor(
+                            `About | ${commandName}`,
+                            "https://cdn.discordapp.com/attachments/883560212563386428/906225307063836732/EB.png"
+                        )
+                        .setDescription(commandDesc);
+                    message.channel.send({ embeds: [embed] });
                 }
-
-                let fileData = JSON.parse(text);
-
-                const commandDesc = fileData[args[1]] ?? "Sorry, try an existing command"
-                let commandName = "Unknown Command"
-
-                if (commandDesc !== "Sorry, try an existing command") {
-                    commandName = args[1][0].toUpperCase() + args[1].substring(1) + " Command"
-                }
-
-                const embed = new Discord.MessageEmbed()
-                    .setColor("#00dde0")
-                    .setAuthor(
-                        `About | ${commandName}`,
-                        "https://cdn.discordapp.com/attachments/896071289884778556/906225556767510538/EB.png"
-                    )
-                    .setDescription(
-                        commandDesc
-                    );
-                message.channel.send({ embeds: [embed] });
-            })
+            );
         }
     },
     slashData: new SlashCommandBuilder()
@@ -172,7 +178,7 @@ module.exports = {
                 .setColor("#00dde0")
                 .setAuthor(
                     "About | Main",
-                    "https://cdn.discordapp.com/attachments/896071289884778556/906225556767510538/EB.png"
+                    "https://cdn.discordapp.com/attachments/883560212563386428/906225307063836732/EB.png"
                 )
                 .addField(
                     "Categories",
@@ -196,7 +202,7 @@ module.exports = {
                 .setColor("#00dde0")
                 .setAuthor(
                     "About | Myself",
-                    "https://cdn.discordapp.com/attachments/896071289884778556/906225556767510538/EB.png"
+                    "https://cdn.discordapp.com/attachments/883560212563386428/906225307063836732/EB.png"
                 )
                 .setDescription(
                     "My name is EskiBot, I am the offical discord bot for iDenali's servers.\n\n My father is InventBoss who create me in exchange for power in iDenali's servers.\n I was born on October 31 2021 when my father started work on me.\n\nI'm not currently open to other servers outside the iDenali family, but\nyou can find my source code [here](https://github.com/InventBoss/EskiBot)."
@@ -217,7 +223,7 @@ module.exports = {
                 .setColor("#00dde0")
                 .setAuthor(
                     "About | Creator",
-                    "https://cdn.discordapp.com/attachments/896071289884778556/906225556767510538/EB.png"
+                    "https://cdn.discordapp.com/attachments/883560212563386428/906225307063836732/EB.png"
                 )
                 .setDescription(
                     "My father, InventBoss, created me along with my brother, [MeDaBot](https://github.com/InventBoss/MeDaBot-JavaScript).\n\nHe's an amateur french programmer who lives in America."
@@ -251,7 +257,7 @@ module.exports = {
                             .toUpperCase() +
                         interaction.options.getString("chosen").substring(1)
                     }`,
-                    "https://cdn.discordapp.com/attachments/896071289884778556/906225556767510538/EB.png"
+                    "https://cdn.discordapp.com/attachments/883560212563386428/906225307063836732/EB.png"
                 )
                 .setDescription(commandContent);
             interaction.reply({ embeds: [embed] });

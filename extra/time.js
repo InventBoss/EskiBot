@@ -23,17 +23,22 @@ const tick = (client) => {
             const channelIds = [859291595671994379n, 896071289381470286n];
 
             for (const channelId of channelIds) {
+                const role =
+                    client.channels.cache.get(`${channelId}`).guild.roles.cache.find(
+                        (role) => role.name === "Polls Ping"
+                    ) || "";
+                
                 const embed = new Discord.MessageEmbed()
                     .setColor("#8ae9ff")
                     .setTitle("Daily Poll")
-                    .setDescription(`${chosenPoll}`);
+                    .setDescription(`${role} ${chosenPoll}`);
 
                 const pollMessage = await client.channels.cache
                     .get(`${channelId}`)
                     .send({ embeds: [embed] });
 
-                await pollMessage.react("✔️");
-                await pollMessage.react("❌");
+                await pollMessage.react("1️⃣");
+                await pollMessage.react("2️⃣");
             }
         });
     }

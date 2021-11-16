@@ -1,7 +1,16 @@
 {
     "polls": [
         {
-            "poll": "Do you like pineapple on pizza?"
+            "poll": "**Do you like pineapple on pizza?**\n1. Yeah I like it!\n2. No, I don't enjoy it."
+        },
+        {
+            "poll": "**Which is better for music: Youtube or Spotify?**\n1. Youtube\n2. Spotify"
+        },
+        {
+            "poll": "**Minecraft vs. Geometry Dash**\n1. Minecraft\n2. Geometry Dash"
+        },
+        {
+            "poll": "**Which is worse: Roblox or Fortnite?**\n1. Roblox\n2. Fortnite"
         }
     ]
 }

@@ -19,6 +19,8 @@ module.exports = {
             }) ||
             message.author.id === 617816411750006794n
         ) {
+            
+
             if (args[0] === "add") {
                 fs.readFile("./data/poll.json", "utf-8", (error, text) => {
                     if (error) {
@@ -44,7 +46,7 @@ module.exports = {
                             .setColor("#ccfeff")
                             .setAuthor(
                                 `Added poll to the database`,
-                                "https://cdn.discordapp.com/attachments/896071289884778556/906225556767510538/EB.png"
+                                "https://cdn.discordapp.com/attachments/883560212563386428/906225307063836732/EB.png"
                             );
                         message.channel.send({ embeds: [embed] });
                     });
@@ -76,18 +78,24 @@ module.exports = {
                         ];
 
                         for (const channelId of channelIds) {
+                            const role =
+                                message.client.channels.cache
+                                    .get(`${channelId}`)
+                                    .guild.roles.cache.find(
+                                        (role) => role.name === "Polls Ping"
+                                    ) || "";
                             const embed = new Discord.MessageEmbed()
                                 .setColor("#8ae9ff")
                                 .setTitle("Daily Poll")
-                                .setDescription(`${chosenPoll}`);
-
+                                .setDescription(`${role} ${chosenPoll}`);
+                            
                             const pollMessage =
                                 await message.client.channels.cache
                                     .get(`${channelId}`)
                                     .send({ embeds: [embed] });
 
-                            await pollMessage.react("✔️");
-                            await pollMessage.react("❌");
+                            await pollMessage.react("1️⃣");
+                            await pollMessage.react("2️⃣");
                         }
                     }
                 );
@@ -123,6 +131,7 @@ module.exports = {
             }) ||
             interaction.author.id === 617816411750006794n
         ) {
+            
             if (interaction.options.getSubcommand() === "add") {
                 fs.readFile("./data/poll.json", "utf-8", (error, text) => {
                     if (error) {
@@ -148,7 +157,7 @@ module.exports = {
                             .setColor("#ccfeff")
                             .setAuthor(
                                 `Added poll to the database`,
-                                "https://cdn.discordapp.com/attachments/896071289884778556/906225556767510538/EB.png"
+                                "https://cdn.discordapp.com/attachments/883560212563386428/906225307063836732/EB.png"
                             );
                         return await interaction.reply({ embeds: [embed] });
                     });
@@ -190,8 +199,8 @@ module.exports = {
                                     .get(`${channelId}`)
                                     .send({ embeds: [embed] });
 
-                            await pollMessage.react("✔️");
-                            await pollMessage.react("❌");
+                            await pollMessage.react("1️⃣");
+                            await pollMessage.react("2️⃣");
                         }
                         await interaction.reply({
                             content: `Post has been sent`,
