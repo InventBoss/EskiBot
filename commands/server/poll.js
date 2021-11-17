@@ -19,9 +19,8 @@ module.exports = {
             }) ||
             message.author.id === 617816411750006794n
         ) {
-            
-
             if (args[0] === "add") {
+                // Please @ me on one of iDenali's servers or message me on twitter (@invent_boss) if you want to recommend a poll to me
                 fs.readFile("./data/poll.json", "utf-8", (error, text) => {
                     if (error) {
                         throw error;
@@ -88,7 +87,7 @@ module.exports = {
                                 .setColor("#8ae9ff")
                                 .setTitle("Daily Poll")
                                 .setDescription(`${role} ${chosenPoll}`);
-                            
+
                             const pollMessage =
                                 await message.client.channels.cache
                                     .get(`${channelId}`)
@@ -131,7 +130,6 @@ module.exports = {
             }) ||
             interaction.author.id === 617816411750006794n
         ) {
-            
             if (interaction.options.getSubcommand() === "add") {
                 fs.readFile("./data/poll.json", "utf-8", (error, text) => {
                     if (error) {

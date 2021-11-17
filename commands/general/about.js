@@ -43,6 +43,7 @@ module.exports = {
                 );
             message.channel.send({ embeds: [embed] });
         } else if (args[0] === "creator") {
+            // This is used to create buttons for this command that link to my socials
             const row = new Discord.MessageActionRow().addComponents(
                 new Discord.MessageButton()
                     .setLabel("Twitter")
@@ -53,6 +54,7 @@ module.exports = {
                     .setStyle("LINK")
                     .setURL("https://github.com/InventBoss/MeDaBot-JavaScript")
             );
+
             const embed = new Discord.MessageEmbed()
                 .setColor("#00dde0")
                 .setAuthor(
@@ -104,6 +106,7 @@ module.exports = {
                 message.channel.send({ embeds: [embed] });
             }
         } else if (args[0] === "command") {
+            // Ok, so for getting the description of a specific command, I just stored it all on a json file (extra/commandDesc.json) cause I thought it was cleaner
             fs.readFile(
                 "./data/commandDesc.json",
                 "utf-8",

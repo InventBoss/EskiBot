@@ -1,11 +1,14 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const fs = require("fs");
 
+// I don't completely know how this code works, but just follow along
+
 module.exports = {
     name: "reload",
     category: "dev",
     executeText: (message, args) => {
         if (message.author.id === "617816411750006794") {
+            // Pulls the text command from when we registered it in index.js
             const commandName = args[0].toLowerCase();
             const command = message.client.textCommands.get(commandName);
 
@@ -15,6 +18,7 @@ module.exports = {
                 );
             }
 
+            // Actually get the command file and all the data inside
             const commandFolders = fs.readdirSync("./commands");
             const folderName = commandFolders.find((folder) =>
                 fs
@@ -22,11 +26,13 @@ module.exports = {
                     .includes(`${command.name}.js`)
             );
 
+            // I'm pretty sure this just deletes the command from the memory or some shit
             delete require.cache[
                 require.resolve(`../${folderName}/${command.name}.js`)
             ];
 
             try {
+                // This prolly registers the command again
                 const newCommand = require(`../${folderName}/${command.name}.js`);
                 message.client.textCommands.set(newCommand.name, newCommand);
                 message.channel.send(

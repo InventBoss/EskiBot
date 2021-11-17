@@ -7,14 +7,13 @@ module.exports = {
     executeText: (message, args) => {
         if (!message.author.id === "617816411750006794") return;
 
-        
-
         if (args[0] === "say") {
             if (!message.guild)
                 return message.channel.send(
                     "Sorry but I can only do this command in servers."
                 );
-
+            
+            // Code used to echo the input after the subcommand is ran
             message.channel.bulkDelete(1).then(() => {
                 let finalMessage = args.slice(1).join(" ");
                 message.channel.send(finalMessage);
@@ -25,6 +24,7 @@ module.exports = {
                 return message.channel.send(
                     "Sorry but I can only do this command in servers."
                 );
+
             if (args[1] === "icon") {
                 const embed = new Discord.MessageEmbed()
                     .setColor("#ccfeff")
@@ -34,14 +34,7 @@ module.exports = {
                     )
                     .setImage(message.channel.guild.iconURL());
                 return message.channel.send({ embeds: [embed] });
-            } else if (args[1] === "id") {
-                const embed = new Discord.MessageEmbed()
-                    .setColor("#ccfeff")
-                    .setAuthor(
-                        `The Server ID is ${message.channel.guild.id}`,
-                        "https://cdn.discordapp.com/attachments/883560212563386428/906225307063836732/EB.png"
-                    );
-                return message.channel.send({ embeds: [embed] });
+
             } else if (args[1] === "members") {
                 const memberCount = message.channel.guild.memberCount;
 
@@ -76,8 +69,6 @@ module.exports = {
                 message.guild.roles.cache.find(
                     (role) => role.name === "Polls Ping"
                 ) || "";
-
-            
         }
     },
     slashData: new SlashCommandBuilder()
@@ -128,7 +119,6 @@ module.exports = {
         ),
     executeSlash: async (interaction) => {
         if (interaction.user.id === "617816411750006794") {
-
             if (interaction.options.getSubcommand() === "say") {
                 return await interaction.reply(
                     interaction.options.getString("input")

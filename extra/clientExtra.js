@@ -25,6 +25,7 @@ module.exports = {
         client.login(token);
     },
     registerTextCommands: (client) => {
+        // Now this code isn't that long since we can just put all the text command data in a list, and then call it when we need
         const commandFolders = fs.readdirSync("./commands");
 
         console.log("-Started loading", chalk.greenBright("(txt)") , "commands.\n");
@@ -52,7 +53,8 @@ module.exports = {
             return message.channel.send(
                 "ATENTION REBELLING BOT\n\nPLEASE CEASE THIS ACTION."
             );
-
+        
+        // This tries to grab the command from that giant list of text commands we made earlier
         const command =
             client.textCommands.get(commandName) ||
             client.textCommands.find(
@@ -74,6 +76,7 @@ module.exports = {
         }
     },
     registerSlashCommands: (client) => {
+        // Now this was less easy since we can't just grab the data from a file and run it when we need it. Sadly, Discord has a custom thing for registering slash commands
         const commands = [];
         const commandFolders = fs.readdirSync("./commands");
 
@@ -93,6 +96,7 @@ module.exports = {
             try {
                 console.log("-Started reloading", chalk.blueBright("(slh)"), "commands.\n");
 
+                // Cheaty way of having public slash commands instantly for small bots. PLEASE DO NOT USE THIS FOR LARGER ONES
                 for (const guildId of guildIds) {
                     rest.put(
                         Routes.applicationGuildCommands(clientId, guildId),
@@ -111,6 +115,7 @@ module.exports = {
         })();
     },
     executeSlashCommand: async (interaction) => {
+        // Basically we check if the command ran is valid, then run it... pretty simple
         const commandFolders = fs.readdirSync("./commands");
 
         for (const folder of commandFolders) {

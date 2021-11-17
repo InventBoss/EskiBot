@@ -4,13 +4,31 @@
             "poll": "**Do you like pineapple on pizza?**\n1. Yeah I like it!\n2. No, I don't enjoy it."
         },
         {
-            "poll": "**Which is better for music: Youtube or Spotify?**\n1. Youtube\n2. Spotify"
+            "poll": "**Which is better for music?**\n1. Youtube\n2. Spotify"
         },
         {
             "poll": "**Minecraft vs. Geometry Dash**\n1. Minecraft\n2. Geometry Dash"
         },
         {
-            "poll": "**Which is worse: Roblox or Fortnite?**\n1. Roblox\n2. Fortnite"
+            "poll": "**Which is the worse game?**\n1. Roblox\n2. Fortnite"
+        },
+        {
+            "poll": "**What do you prefer for breakfast?**\n1. Cereal\n2. Toast"
+        },
+        {
+            "poll": "**What is better for streaming?**\n1. Twitch\n2. Youtube"
+        },
+        {
+            "poll": "**Which is better for Minecraft mod loading?**\n1. Forge\n2. Fabric"
+        },
+        {
+            "poll": "**Chaos or Control?**\n1. Chaos\n2. Control"
+        },
+        {
+            "poll": "**Which browser is better?**\n1. Chrome\n2. Edge"
+        },
+        {
+            "poll": "**Which OS is the best?**\n1. Windows\n2. Linux"
         }
     ]
 }

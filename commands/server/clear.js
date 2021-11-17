@@ -24,6 +24,8 @@ module.exports = {
             }
             try {
                 let convertedResult = parseInt(number);
+
+                // Use this code to bulk delete a specific number of messages in a channel
                 message.channel.bulkDelete(++convertedResult);
             } catch (error) {
                 console.log("(err)" + error);
