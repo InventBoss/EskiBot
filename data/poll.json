@@ -29,6 +29,33 @@
         },
         {
             "poll": "**Which OS is the best?**\n1. Windows\n2. Linux"
+        },
+        {
+            "poll": "**Do you like the upcoming Minecraft update?**\n1. Yeah it's very nice\n2. Nah, Mojang could do better"
+        },
+        {
+            "poll": "**Is broccoli good (there is only one answer)?**\n1. Yeah it's the best\n2. No, wipe it off the face of the earth"
+        },
+        {
+            "poll": "**How's your sense of humor?**\n1. I am comedy\n2. What's a humor?"
+        },
+        {
+            "poll": "**Is basketball the best sport?**\n1. Yes\n2. No"
+        },
+        {
+            "poll": "**Is soccer the best sport?**\n1. Yes\n2. No"
+        },
+        {
+            "poll": "**Is American football the best sport?**\n1. Yes\n2. No"
+        },
+        {
+            "poll": "**Is hockey the best sport?**\n1. Yes\n2. No"
+        },
+        {
+            "poll": "**Is skiing/snowboarding the best sport?**\n1. Yes\n2. No"
+        },
+        {
+            "poll": "**Is swimming the best sport?**\n1. Yes\n2. No"
         }
     ]
 }
