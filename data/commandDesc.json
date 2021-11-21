@@ -3,5 +3,6 @@
     "inspireme": "`>inspireme` | Get inspired my dudes\n\nDo you feel the need to align your chakras? Do you wanna open your third eye? Or do you wanna feel better about yourself? Well use this inovation thanks to inspirobot.",
     "user": "`>user (user)` | Show details about a specific user\n\nDo you need to know when your best friend/mortal enemy joined this server? Are you lazy and don't wanna enable developer mode to get an id? Well I have the perfect IP grabbing command for you!\n\nNOTE: This bot cannot grab IPs... yet.",
     "clear": "`>clear (number)` | Delete a specific amount of messages\n\nDo you want to get rid of a bunch of messages? Well, if you have the manage message perm, you can! Simply type the command with the amount of messages you want gone! Default is 5.",
-    "poll" : "`>poll add (poll)` | Add a poll to the poll database\n`>poll post` | Trigger the bot to send a poll\n\nI know you love my polls. So if you have the administrator perm, you can manage this wonderful feature."
+    "poll" : "`>poll add (poll)` | Add a poll to the poll database\n`>poll post` | Trigger the bot to send a poll\n\nI know you love my polls. So if you have the administrator perm, you can manage this wonderful feature.",
+    "trueorfalse": "`>trueorfalse` | Get a true or false question\n\nHey do you like trivia? Or do you need to learn useless things like... someone who doesn't know useless things? Well try this!"
 }

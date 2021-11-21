@@ -24,7 +24,7 @@ module.exports = {
                 )
                 .addField(
                     "Eskibot",
-                    "`|about me` | Get some info on what/why/who I am"
+                    "`|about me` | Get some info on what, why, and who I am"
                 )
                 .addField(
                     "Creator",

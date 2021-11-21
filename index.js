@@ -1,10 +1,12 @@
 const Discord = require("discord.js");
 const clientExtra = require("./extra/clientExtra.js");
 const time = require("./extra/time.js");
+const welcome = require("./extra/welcome.js");
 require("dotenv").config();
 
 /*
-Welcome to the EskiBot source code! Now I don't like to comment code, so I'm gonna put out some ground rules for that:
+Welcome to the EskiBot source code!
+Now I don't like to comment code, so I'm gonna put out some ground rules for that:
 
 - I will usually not comment code in the slash command data and the text command data, just the text.
 - I will usually only comment code that is interesting/helpful, so no "This subcommand blah blah blah".
@@ -44,5 +46,10 @@ client.on("interactionCreate", async (interaction) => {
     if (interaction.isCommand())
         return clientExtra.executeSlashCommand(interaction);
 });
+
+// Used to rip-off the MEE6 welcome feature
+client.on("guildMemberAdd", async (member) => {
+    welcome.run(client, member)
+})
 
 clientExtra.startBot(client, process.env["TOKEN"]);

@@ -11,7 +11,7 @@ module.exports = {
         const chosenUser =
             message.mentions.members.first() ||
             message.guild.members.cache.get(args[0]) ||
-            message.guild.member(message.author);
+            message.member
 
         const embed = new Discord.MessageEmbed()
             .setColor("#85a7ff")
