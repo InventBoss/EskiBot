@@ -44,9 +44,7 @@ const applyText = (canvas, size, text) => {
 };
 
 module.exports = {
-    run: async (client, member) => {
-        console.log("test");
-
+    run: async (member) => {
         const canvas = Canvas.createCanvas(700, 350);
         const context = canvas.getContext("2d");
 

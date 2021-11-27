@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const clientExtra = require("./extra/clientExtra.js");
+const messageFeatures = require("./extra/messageFeatures.js")
 const time = require("./extra/time.js");
 const welcome = require("./extra/welcome.js");
 require("dotenv").config();
@@ -38,6 +39,7 @@ client.on("ready", async () => {
 
 // Used to run text commands
 client.on("messageCreate", (message) => {
+    messageFeatures.run(message)
     clientExtra.executeTextCommand(client, message);
 });
 
@@ -49,7 +51,7 @@ client.on("interactionCreate", async (interaction) => {
 
 // Used to rip-off the MEE6 welcome feature
 client.on("guildMemberAdd", async (member) => {
-    welcome.run(client, member)
+    welcome.run(member)
 })
 
 clientExtra.startBot(client, process.env["TOKEN"]);

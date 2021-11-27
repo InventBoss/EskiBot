@@ -47,6 +47,12 @@ module.exports = {
                         .setDescription(
                             `**${decodeURIComponent(triviaData["question"])}**`
                         )
+                        .setFooter(
+                            `${decodeURIComponent(triviaData["category"])} | ${
+                                triviaData["difficulty"][0].toUpperCase() +
+                                triviaData["difficulty"].substring(1)
+                            }`
+                        )
                         .setColor("#2afcb3");
 
                     triviaMessage.edit({ embeds: [embed], components: [row] });
@@ -70,7 +76,7 @@ module.exports = {
                     collector.on("end", (collected) => {
                         const collectedArray = Array.from(collected);
 
-                        if (collectedArray.size === 0) {
+                        if (!collectedArray.length) {
                             const embed = new Discord.MessageEmbed()
                                 .setAuthor(
                                     "True or False | Answer",
@@ -80,6 +86,16 @@ module.exports = {
                                     `**You Didn't write anything down**\n\n*"${decodeURIComponent(
                                         triviaData["question"]
                                     )}"*\nis **${correctAnswer}**`
+                                )
+                                .setFooter(
+                                    `${decodeURIComponent(
+                                        triviaData["category"]
+                                    )} | ${
+                                        triviaData[
+                                            "difficulty"
+                                        ][0].toUpperCase() +
+                                        triviaData["difficulty"].substring(1)
+                                    }`
                                 )
                                 .setColor("#2afcb3");
 
@@ -99,6 +115,18 @@ module.exports = {
                                             triviaData["question"]
                                         )}"*\nis **${correctAnswer}**`
                                     )
+                                    .setFooter(
+                                        `${decodeURIComponent(
+                                            triviaData["category"]
+                                        )} | ${
+                                            triviaData[
+                                                "difficulty"
+                                            ][0].toUpperCase() +
+                                            triviaData["difficulty"].substring(
+                                                1
+                                            )
+                                        }`
+                                    )
                                     .setColor("#2afcb3");
 
                                 triviaMessage.edit({ embeds: [embed] });
@@ -112,6 +140,18 @@ module.exports = {
                                         `**Sorry, that's wrong**\n\n*"${decodeURIComponent(
                                             triviaData["question"]
                                         )}"*\nis **${correctAnswer}**`
+                                    )
+                                    .setFooter(
+                                        `${decodeURIComponent(
+                                            triviaData["category"]
+                                        )} | ${
+                                            triviaData[
+                                                "difficulty"
+                                            ][0].toUpperCase() +
+                                            triviaData["difficulty"].substring(
+                                                1
+                                            )
+                                        }`
                                     )
                                     .setColor("#2afcb3");
 
@@ -132,6 +172,18 @@ module.exports = {
                                             triviaData["question"]
                                         )}"*\nis **${correctAnswer}**`
                                     )
+                                    .setFooter(
+                                        `${decodeURIComponent(
+                                            triviaData["category"]
+                                        )} | ${
+                                            triviaData[
+                                                "difficulty"
+                                            ][0].toUpperCase() +
+                                            triviaData["difficulty"].substring(
+                                                1
+                                            )
+                                        }`
+                                    )
                                     .setColor("#2afcb3");
 
                                 triviaMessage.edit({ embeds: [embed] });
@@ -145,6 +197,18 @@ module.exports = {
                                         `**Sorry, that's wrong**\n\n*"${decodeURIComponent(
                                             triviaData["question"]
                                         )}"*\nis **${correctAnswer}**`
+                                    )
+                                    .setFooter(
+                                        `${decodeURIComponent(
+                                            triviaData["category"]
+                                        )} | ${
+                                            triviaData[
+                                                "difficulty"
+                                            ][0].toUpperCase() +
+                                            triviaData["difficulty"].substring(
+                                                1
+                                            )
+                                        }`
                                     )
                                     .setColor("#2afcb3");
 
@@ -201,16 +265,25 @@ module.exports = {
                         .setDescription(
                             `**${decodeURIComponent(triviaData["question"])}**`
                         )
+                        .setFooter(
+                            `${decodeURIComponent(triviaData["category"])} | ${
+                                triviaData["difficulty"][0].toUpperCase() +
+                                triviaData["difficulty"].substring(1)
+                            }`
+                        )
                         .setColor("#2afcb3");
 
-                    interaction.editReply({ embeds: [embed], components: [row] });
+                    interaction.editReply({
+                        embeds: [embed],
+                        components: [row],
+                    });
 
                     const filter = (buttonInteraction) => {
                         if (buttonInteraction.user.id === interaction.member.id)
                             return true;
                         return false;
                     };
-                    const interactionMessage = await interaction.fetchReply()
+                    const interactionMessage = await interaction.fetchReply();
                     const collector =
                         interactionMessage.createMessageComponentCollector({
                             filter,
@@ -224,7 +297,7 @@ module.exports = {
                     collector.on("end", (collected) => {
                         const collectedArray = Array.from(collected);
 
-                        if (collectedArray.size === 0) {
+                        if (!collectedArray.length) {
                             const embed = new Discord.MessageEmbed()
                                 .setAuthor(
                                     "True or False | Answer",
@@ -234,6 +307,16 @@ module.exports = {
                                     `**You Didn't write anything down**\n\n*"${decodeURIComponent(
                                         triviaData["question"]
                                     )}"*\nis **${correctAnswer}**`
+                                )
+                                .setFooter(
+                                    `${decodeURIComponent(
+                                        triviaData["category"]
+                                    )} | ${
+                                        triviaData[
+                                            "difficulty"
+                                        ][0].toUpperCase() +
+                                        triviaData["difficulty"].substring(1)
+                                    }`
                                 )
                                 .setColor("#2afcb3");
 
@@ -253,6 +336,18 @@ module.exports = {
                                             triviaData["question"]
                                         )}"*\nis **${correctAnswer}**`
                                     )
+                                    .setFooter(
+                                        `${decodeURIComponent(
+                                            triviaData["category"]
+                                        )} | ${
+                                            triviaData[
+                                                "difficulty"
+                                            ][0].toUpperCase() +
+                                            triviaData["difficulty"].substring(
+                                                1
+                                            )
+                                        }`
+                                    )
                                     .setColor("#2afcb3");
 
                                 interaction.editReply({ embeds: [embed] });
@@ -266,6 +361,18 @@ module.exports = {
                                         `**Sorry, that's wrong**\n\n*"${decodeURIComponent(
                                             triviaData["question"]
                                         )}"*\nis **${correctAnswer}**`
+                                    )
+                                    .setFooter(
+                                        `${decodeURIComponent(
+                                            triviaData["category"]
+                                        )} | ${
+                                            triviaData[
+                                                "difficulty"
+                                            ][0].toUpperCase() +
+                                            triviaData["difficulty"].substring(
+                                                1
+                                            )
+                                        }`
                                     )
                                     .setColor("#2afcb3");
 
@@ -286,6 +393,18 @@ module.exports = {
                                             triviaData["question"]
                                         )}"*\nis **${correctAnswer}**`
                                     )
+                                    .setFooter(
+                                        `${decodeURIComponent(
+                                            triviaData["category"]
+                                        )} | ${
+                                            triviaData[
+                                                "difficulty"
+                                            ][0].toUpperCase() +
+                                            triviaData["difficulty"].substring(
+                                                1
+                                            )
+                                        }`
+                                    )
                                     .setColor("#2afcb3");
 
                                 interaction.editReply({ embeds: [embed] });
@@ -299,6 +418,18 @@ module.exports = {
                                         `**Sorry, that's wrong**\n\n*"${decodeURIComponent(
                                             triviaData["question"]
                                         )}"*\nis **${correctAnswer}**`
+                                    )
+                                    .setFooter(
+                                        `${decodeURIComponent(
+                                            triviaData["category"]
+                                        )} | ${
+                                            triviaData[
+                                                "difficulty"
+                                            ][0].toUpperCase() +
+                                            triviaData["difficulty"].substring(
+                                                1
+                                            )
+                                        }`
                                     )
                                     .setColor("#2afcb3");
 
