@@ -3,6 +3,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 module.exports = {
     name: "clear",
     category: "server",
+    hasPerms: false,
     shortDesc: "`|clear` | Clear a specific amount of messages. Default is 5\n",
     executeText: (message, args) => {
         if (!message.guild)

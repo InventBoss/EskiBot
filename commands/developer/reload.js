@@ -6,6 +6,7 @@ const fs = require("fs");
 module.exports = {
     name: "reload",
     category: "dev",
+    hasPerms: true,
     executeText: (message, args) => {
         if (message.author.id === "617816411750006794") {
             // Pulls the text command from when we registered it in index.js
@@ -53,6 +54,7 @@ module.exports = {
     slashData: new SlashCommandBuilder()
         .setName("reload")
         .setDescription("Reload a command")
+        .setDefaultPermission(false)
         .addStringOption((option) =>
             option
                 .setName("command")
@@ -102,4 +104,11 @@ module.exports = {
             );
         }
     },
+    slashPermissions: () => {
+        return [{
+            id: "617816411750006794",
+            type: "USER",
+            permission: true,
+        }]
+    }
 };

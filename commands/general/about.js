@@ -5,6 +5,7 @@ const fs = require("fs");
 module.exports = {
     name: "about",
     category: "general",
+    hasPerms: false,
     shortDesc: "`|about` | Get info about stuff you don't know\n",
     executeText: (message, args) => {
         if (!args.length) {

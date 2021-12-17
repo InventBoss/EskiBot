@@ -5,6 +5,7 @@ const fs = require("fs");
 module.exports = {
     name: "poll",
     category: "server",
+    hasPerms: false,
     shortDesc: "`|poll` | Manage the daily polls\n",
     executeText: (message, args) => {
         if (!message.guild)

@@ -1,11 +1,10 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const Discord = require("discord.js");
-const Canvas = require("canvas");
-const moment = require("moment");
 
 module.exports = {
     name: "console",
     category: "dev",
+    hasPerms: true,
     executeText: async (message, args) => {
         if (!message.author.id === "617816411750006794") return;
 
@@ -64,14 +63,17 @@ module.exports = {
             return message.channel.send({ embeds: [embed] });
         } else if (args[0] === "test") {
             const embed = new Discord.MessageEmbed()
-                .setDescription("[BTS (방탄소년단) '작은 것들을 위한 시 (Boy With Luv) (feat. Halsey)' Official MV](https://www.youtube.com/watch?v=Dm9m29M3cKg)")
-                .setFooter("Added by InventBoss#7641")                
+                .setDescription(
+                    "[BTS (방탄소년단) '작은 것들을 위한 시 (Boy With Luv) (feat. Halsey)' Official MV](https://www.youtube.com/watch?v=Dm9m29M3cKg)"
+                )
+                .setFooter("Added by InventBoss#7641");
             message.channel.send({ embeds: [embed] });
         }
     },
     slashData: new SlashCommandBuilder()
         .setName("console")
         .setDescription("A developer command for InventBoss")
+        .setDefaultPermission(false)
         .addSubcommand((subcommand) =>
             subcommand
                 .setName("say")
@@ -179,4 +181,11 @@ module.exports = {
         }
         return await interaction.reply("You're not my father >:(");
     },
+    slashPermissions: () => {
+        return [{
+            id: "617816411750006794",
+            type: "USER",
+            permission: true,
+        }]
+    }
 };

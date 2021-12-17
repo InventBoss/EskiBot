@@ -5,6 +5,7 @@ const moment = require("moment");
 module.exports = {
     name: "user",
     category: "general",
+    hasPerms: false,
     shortDesc: "`|user` | Get info about people you don't know\n",
     executeText: (message, args) => {
         // Use this code if you wanna grab the users GuildMember object for text commands

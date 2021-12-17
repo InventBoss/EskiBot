@@ -5,6 +5,7 @@ const Discord = require("discord.js");
 module.exports = {
     name: "trueorfalse",
     category: "general",
+    hasPerms: false,
     shortDesc: "`|trueorfalse` | Test your knowledge\n",
     executeText: (message) => {
         const embed = new Discord.MessageEmbed()

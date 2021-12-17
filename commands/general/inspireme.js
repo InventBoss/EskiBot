@@ -5,6 +5,7 @@ const fetch = require("node-fetch");
 module.exports = {
     name: "inspireme",
     category: "general",
+    hasPerms: false,
     shortDesc: "`|inpspireme` | Become namaste my dudes\n",
     executeText: (message) => {
         // Fetch from the inspirobot api! I'd recommend you put this url in your browser, then click the link
