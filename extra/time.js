@@ -2,7 +2,10 @@ const fs = require("fs");
 const Discord = require("discord.js");
 const _ = require("underscore");
 
-// Now one of iDenali's requested features is a daily poll system. So, this code sends a poll everyday at lunch while the bot is online
+/* 
+Now one of iDenali's requested features is a daily poll system.
+So, this code sends a poll everyday at lunch while the bot is online.
+*/
 
 const tick = (client) => {
     // Use this code to check a specific hour (military time btw) and minute to see if that's the current time
@@ -19,16 +22,16 @@ const tick = (client) => {
             const chosenPollNum =
                 Math.floor(
                     Math.random() * (_.keys(data["polls"]).length - 1 + 1)
-                ) + 1;
+                ) + 1; // This code pulls a random array from an array or whatever you call it.
 
             const chosenPoll = data["polls"][chosenPollNum - 1]["poll"];
 
-            const channelIds = [859291595671994379n, 896071289381470286n];
+            const { pollChannelIds } = require("../config.json");
 
-            for (const channelId of channelIds) {
+            for (const channelId of pollChannelIds) {
                 const role =
                     client.channels.cache
-                        .get(`${channelId}`)
+                        .get(channelId)
                         .guild.roles.cache.find(
                             (role) => role.name === "Polls Ping"
                         ) || "";

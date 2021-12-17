@@ -3,10 +3,9 @@ const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
 const fs = require("fs");
 const { prefix } = require("../config.json");
-const chalk = require("chalk")
+const chalk = require("chalk");
 
 const clientId = 904202447642312735n;
-const guildIds = [859291380233011220n, 896071289310162974n];
 
 module.exports = {
     createClient: () => {
@@ -29,7 +28,11 @@ module.exports = {
         // Now this code isn't that long since we can just put all the text command data in a list, and then call it when we need
         const commandFolders = fs.readdirSync("./commands");
 
-        console.log("-Started loading", chalk.greenBright("(txt)") , "commands.\n");
+        console.log(
+            "-Started loading",
+            chalk.greenBright("(txt)"),
+            "commands.\n"
+        );
         for (const folder of commandFolders) {
             const commandFiles = fs
                 .readdirSync(`./commands/${folder}`)
@@ -39,7 +42,11 @@ module.exports = {
                 client.textCommands.set(command.name, command);
             }
         }
-        console.log("-Successfully loaded", chalk.greenBright("(txt)") , "commands.\n");
+        console.log(
+            "-Successfully loaded",
+            chalk.greenBright("(txt)"),
+            "commands.\n"
+        );
 
         return client.textCommands;
     },
@@ -54,7 +61,7 @@ module.exports = {
             return message.channel.send(
                 "ATENTION REBELLING BOT\n\nPLEASE CEASE THIS ACTION."
             );
-        
+
         // This tries to grab the command from that giant list of text commands we made earlier
         const command =
             client.textCommands.get(commandName) ||
@@ -67,7 +74,8 @@ module.exports = {
         try {
             command.executeText(message, args, text);
             console.log(
-                chalk.greenBright("(txt)"), `<${message.author.tag}> executed ${commandName} in <${message.guild}>`
+                chalk.greenBright("(txt)"),
+                `<${message.author.tag}> executed ${commandName} in <${message.guild}>`
             );
         } catch (error) {
             console.log(chalk.redBright("(err)"), error);
@@ -95,7 +103,15 @@ module.exports = {
 
         (async () => {
             try {
-                console.log("-Started reloading", chalk.blueBright("(slh)"), "commands.\n");
+                console.log(
+                    "-Started reloading",
+                    chalk.blueBright("(slh)"),
+                    "commands.\n"
+                );
+
+                const guildIds = await client.guilds.cache.map(
+                    (guild) => guild.id
+                );
 
                 // Cheaty way of having public slash commands instantly for small bots. PLEASE DO NOT USE THIS FOR LARGER ONES
                 for (const guildId of guildIds) {
@@ -104,11 +120,13 @@ module.exports = {
                         {
                             body: commands,
                         }
-                    )
+                    );
                 }
 
                 console.log(
-                    "-Successfully reloaded", chalk.blueBright("(slh)"), "commands.\n"
+                    "-Successfully reloaded",
+                    chalk.blueBright("(slh)"),
+                    "commands.\n"
                 );
             } catch (error) {
                 console.error(error);
@@ -131,7 +149,8 @@ module.exports = {
                             interaction
                         );
                         console.log(
-                            chalk.blueBright("(slh)"), `<${interaction.user.tag}> executed ${interaction.commandName} in <${interaction.guild.name}>`
+                            chalk.blueBright("(slh)"),
+                            `<${interaction.user.tag}> executed ${interaction.commandName} in <${interaction.guild.name}>`
                         );
                     } catch (error) {
                         console.log(chalk.redBright("(err)"), error);
