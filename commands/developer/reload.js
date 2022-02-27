@@ -105,10 +105,12 @@ module.exports = {
         }
     },
     slashPermissions: () => {
-        return [{
-            id: "617816411750006794",
-            type: "USER",
-            permission: true,
-        }]
-    }
+        return [
+            {
+                id: "617816411750006794",
+                type: "USER",
+                permission: true,
+            },
+        ];
+    },
 };

@@ -31,8 +31,8 @@ client.on("ready", async () => {
     // Initialize slash commands
     clientExtra.registerSlashCommands(client);
 
-    // Register the permissions
-    clientExtra.registerslashPermissions(client)
+    // Register the permissions for said slash commands
+    clientExtra.registerSlashPermissions(client)
 
     // Begin the poll timer
     time.startClock(client);

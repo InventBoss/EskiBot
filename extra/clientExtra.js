@@ -133,44 +133,48 @@ module.exports = {
             }
         })();
     },
-    registerslashPermissions: async (client) => {
+    registerSlashPermissions: async (client) => {
         console.log(
             "-Started loading",
             chalk.blueBright("(slh)"),
             "command permissions.\n"
         );
 
-        const guildIds = await client.guilds.cache.map(
-            (guild) => guild.id
-        );
-        
+        const guildIds = await client.guilds.cache.map((guild) => guild.id);
+
         // This is definitely inefficient but I don't care
-        for(const guildId of guildIds) {
-            const guild = await client.guilds.cache.get(guildId)
-            guild.commands.fetch()
-            .then(async commandsData => {
-                for(const commandData of commandsData) {
-                    const command = await guild.commands.fetch(commandData[0]);
+        for (const guildId of guildIds) {
+            const guild = await client.guilds.cache.get(guildId);
+            guild.commands
+                .fetch()
+                .then(async (commandsData) => {
+                    for (const commandData of commandsData) {
+                        const command = await guild.commands.fetch(
+                            commandData[0]
+                        );
 
-                    const commandFolders = fs.readdirSync("./commands");
+                        const commandFolders = fs.readdirSync("./commands");
 
-                    for (const folder of commandFolders) {
-                        const commandFiles = fs
-                            .readdirSync(`./commands/${folder}`)
-                            .filter((file) => file.endsWith(".js"));
-                        for (const file of commandFiles) {
-                            const fileCommand = require(`../commands/${folder}/${file}`);
-                            if (fileCommand.name === command.name) {
-                                if (fileCommand.hasPerms) {
-                                    const permissions = fileCommand.slashPermissions()
-                                    await command.permissions.add({ permissions });
+                        for (const folder of commandFolders) {
+                            const commandFiles = fs
+                                .readdirSync(`./commands/${folder}`)
+                                .filter((file) => file.endsWith(".js"));
+                            for (const file of commandFiles) {
+                                const fileCommand = require(`../commands/${folder}/${file}`);
+                                if (fileCommand.name === command.name) {
+                                    if (fileCommand.hasPerms) {
+                                        const permissions =
+                                            fileCommand.slashPermissions();
+                                        await command.permissions.add({
+                                            permissions,
+                                        });
+                                    }
                                 }
                             }
                         }
                     }
-                }
-            })
-            .catch(console.error);
+                })
+                .catch(console.error);
         }
 
         console.log(
